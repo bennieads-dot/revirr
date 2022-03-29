@@ -138,7 +138,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.0:8080',
+    'http://0.0.0.0:8081',
 )
-
-
-DJANGO_SETTINGS_MODULE = 'revirr.settings'
