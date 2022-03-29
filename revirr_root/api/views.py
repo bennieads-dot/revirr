@@ -1,20 +1,40 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+#from rest_framework import status
+#from rest_framework.decorators import api_view
+#from rest_framework.response import Response
 from api.models import Job
 from api.serializers import JobSerializer
+from api.models import Company
+from api.serializers import CompanySerializer
+from api.models import Assignment
+from api.serializers import AssignmentSerializer
+from rest_framework import generics
 
 
-@api_view(['GET', 'POST'])
-def JobList(request):
-    if request.method == 'GET':
-        jobs = Job.objects.all()
-        serializer = JobSerializer(jobs, many=True)
-        return Response(serializer.data)
+class JobList(generics.ListCreateAPIView):
+    queryset = Job.objects.all()
+    serializer_class = JobSerializer
 
-    elif request.method == 'POST':
-        serializer = JobSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class JobDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Job.objects.all()
+    serializer_class = JobSerializer
+
+
+class CompanyList(generics.ListCreateAPIView):
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+
+
+class CompanyDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+
+
+class AssignmentList(generics.ListCreateAPIView):
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
+
+
+class AssignmentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Assignment.objects.all()
+    serializer_class = AssignmentSerializer
