@@ -19,7 +19,8 @@ class Assignment(models.Model):
 class Job(models.Model):
     title = models.CharField(max_length=25, blank=False, default='')
     description = models.TextField(blank=False, default='')
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(
+        Company, related_name='jobs', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     city = models.CharField(max_length=25, blank=False, default='')
     post_start_date = models.DateTimeField()
@@ -28,4 +29,4 @@ class Job(models.Model):
     salary = models.IntegerField()
     last_updated = models.DateTimeField(auto_now=True)
     assignment = models.ForeignKey(
-        Assignment, on_delete=models.SET_DEFAULT, default=None)
+        Assignment, related_name='jobs', on_delete=models.SET_NULL, null=True, default=None)
