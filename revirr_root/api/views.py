@@ -7,6 +7,8 @@ from api.models import Company
 from api.serializers import CompanySerializer
 from api.models import Assignment
 from api.serializers import AssignmentSerializer
+from api.models import Question
+from api.serializers import QuestionSerializer
 from rest_framework import generics
 
 
@@ -38,3 +40,13 @@ class AssignmentList(generics.ListCreateAPIView):
 class AssignmentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Assignment.objects.all()
     serializer_class = AssignmentSerializer
+
+
+class QuestionList(generics.ListCreateAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+
+class QuestionDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer

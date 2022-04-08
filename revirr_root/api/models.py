@@ -11,9 +11,19 @@ class Company(models.Model):
     logo = models.CharField(max_length=100, blank=False, default='')
 
 
+class Question(models.Model):
+    title = models.CharField(max_length=25, blank=False, default='')
+    prompt = models.TextField(blank=False, default='')
+    createdAt = models.DateTimeField(auto_now_add=True)
+    question_type = models.TextField
+    last_updated = models.DateTimeField(auto_now=True)
+
+
 class Assignment(models.Model):
     name = models.CharField(max_length=25, blank=False, default='')
     time_limit_minutes = models.IntegerField()
+    questions = models.ManyToManyField(
+        Question, related_name='questions', blank=True)
 
 
 class Job(models.Model):
