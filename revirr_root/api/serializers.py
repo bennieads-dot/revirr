@@ -26,6 +26,7 @@ class JobSerializer(serializers.ModelSerializer):
 
 
 class CompanySerializer(serializers.ModelSerializer):
+    jobs = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Company
@@ -34,19 +35,22 @@ class CompanySerializer(serializers.ModelSerializer):
                   'city',
                   'street',
                   'description',
-                  'logo']
+                  'logo',
+                  'jobs']
 
     def create(self, validated_data):
         return Company.objects.create(**validated_data)
 
 
 class AssignmentSerializer(serializers.ModelSerializer):
+    jobs = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Assignment
         fields = ['id',
                   'name',
-                  'time_limit_minutes']
+                  'time_limit_minutes',
+                  'jobs']
 
     def create(self, validated_data):
         return Assignment.objects.create(**validated_data)
