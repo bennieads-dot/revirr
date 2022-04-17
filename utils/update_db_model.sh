@@ -1,9 +1,9 @@
 #! /usr/bin/bash
 
-cd /revirr/revirr
+cd /vagrant/revirr_root
 
 echo "Creating migrations"
-python manage.py makemigrations api
+python manage.py makemigrations
 
 retVal=$?
 
@@ -14,7 +14,7 @@ fi
 
 echo "Migrations created, sending changes to the database"
 
-python manage.py migrate api
+python manage.py migrate
 
 retVal=$?
 
