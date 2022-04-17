@@ -6,10 +6,12 @@ sudo apt -yqq install python3-venv
 
 #Activate virtual environment
 sudo python3 -m venv venv
-source /vagrant/venv/bin/activate
+source "/vagrant/venv/bin/activate"
 
 #install packages
 pip install markdown django==4.0.3 djangorestframework django-filter psycopg2-binary django-environ django-cors-headers httpie
+
+#create soft link in /venv/bin to the utils scripts
 
 #deactivate the venv
 deactivate

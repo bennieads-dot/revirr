@@ -1,4 +1,3 @@
-# Create your models here.
 from django.db import models
 
 
@@ -15,15 +14,15 @@ class Question(models.Model):
     title = models.CharField(max_length=25, blank=False, default='')
     prompt = models.TextField(blank=False, default='')
     createdAt = models.DateTimeField(auto_now_add=True)
-    question_type = models.TextField
+    question_type = models.TextField(
+        max_length=10, blank=False, default='code')
     last_updated = models.DateTimeField(auto_now=True)
 
 
 class Assignment(models.Model):
     name = models.CharField(max_length=25, blank=False, default='')
     time_limit_minutes = models.IntegerField()
-    questions = models.ManyToManyField(
-        Question, related_name='questions', blank=True)
+    questions = models.ManyToManyField(Question, related_name="questions")
 
 
 class Job(models.Model):

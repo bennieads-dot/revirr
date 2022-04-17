@@ -1,5 +1,5 @@
 #! /usr/bin/bash
 
-cd /revirr/
+cd /vagrant/revirr_root
 
-python manage.py runserver 8080
+python manage.py runserver 0.0.0.0:8081
